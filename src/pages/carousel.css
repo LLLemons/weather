@@ -1,0 +1,11 @@
+.carousel {
+  width: 100%;
+  height: 100%;
+}
+.carouselContainer {
+  width: 300%;
+  display: flex
+}
+.carouselSlider {
+  width: 4rem;
+}

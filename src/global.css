@@ -1,0 +1,56 @@
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+#root {
+  height: 100%;
+  background-color: #5E7DA0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@font-face {
+  font-family: 'iconfont';  /* project id 434778 */
+  src: url('//at.alicdn.com/t/font_434778_3a39yf21udq.eot');
+  src: url('//at.alicdn.com/t/font_434778_3a39yf21udq.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_434778_3a39yf21udq.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_434778_3a39yf21udq.woff') format('woff'),
+  url('//at.alicdn.com/t/font_434778_3a39yf21udq.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_434778_3a39yf21udq.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: .2rem;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-duoyun:before {
+  content: "\e601";
+}
+
+.icon-wu:before {
+  content: "\e65d";
+}
+
+.icon-baoyu:before {
+  content: "\e699";
+}
+
+.icon-xue:before {
+  content: "\e61b";
+}
+
+.icon-weifeng:before {
+  content: "\e70f";
+}
+
+.icon-qinglang:before {
+  content: "\e63b";
+}
+
+.icon-zhenyu:before {
+  content: "\e744";
+}

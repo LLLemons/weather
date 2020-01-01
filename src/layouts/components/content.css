@@ -1,0 +1,6 @@
+.wrapper {
+  width: 100%;
+  height: calc(100% - .6rem);
+  display: flex;
+  justify-content: center;
+}

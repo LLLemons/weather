@@ -1,0 +1,12 @@
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.swiperItemWrapper {
+  width: 100%;
+  padding: 1rem 0 0 0;
+  box-sizing: border-box;
+}
