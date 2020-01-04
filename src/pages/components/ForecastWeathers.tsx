@@ -16,10 +16,10 @@ const ForecastWeathers: React.FC<Props> = ({ location }) => {
     }
   };
   const loadData = async () => {
-    await getForecastWeatherData('beijing');
+    await getForecastWeatherData(location);
   };
   useEffect(() => {
-    // loadData();
+    loadData();
   }, []);
   return (
     <div className={styles.wrapper}>

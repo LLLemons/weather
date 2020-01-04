@@ -17,3 +17,34 @@
   font-size: .3rem;
   top: .3rem;
 }
+.sider {
+  width: 40vw;
+  top: 0;
+  bottom: 0;
+  right: -100%;
+  position: fixed;
+  z-index: 3;
+  background-color: #5E7DA0;
+  box-shadow: -.1rem 0 .1rem 0 rgba(0, 0, 0, .5);
+  transition: all .3s;
+}
+.iconList {
+  position: absolute;
+  right: .5rem;
+  top: .3rem;
+  font-size: .25rem !important;
+}
+.sider {
+}
+.siderItem {
+  font-size: .3rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: .1rem .1rem 0 .2rem;
+}
+.siderIconClose {
+  padding-top: .15rem;
+  padding-bottom: .15rem;
+  padding-left: .15rem;
+  padding-right: .15rem;
+}

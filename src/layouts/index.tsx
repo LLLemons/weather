@@ -5,6 +5,7 @@ import Content from './components/Content';
 import { reducer, init, WeatherStore } from '@/pages/stores';
 
 const BasicLayout: React.FC = props => {
+  const pathname = props.location.pathname;
   const [state, dispatch] = useReducer(
     reducer,
     {
@@ -12,6 +13,22 @@ const BasicLayout: React.FC = props => {
     },
     init,
   );
+  let layout = null;
+  console.log(pathname);
+  if (pathname === '/cities') {
+    layout = (
+      <div className={styles.wrapper}>
+        <Content>{props.children}</Content>
+      </div>
+    );
+  } else {
+    layout = (
+      <div className={styles.wrapper}>
+        <Header />
+        <Content>{props.children}</Content>
+      </div>
+    );
+  }
   return (
     <WeatherStore.Provider
       value={{
@@ -19,10 +36,7 @@ const BasicLayout: React.FC = props => {
         dispatch,
       }}
     >
-      <div className={styles.wrapper}>
-        <Header />
-        <Content>{props.children}</Content>
-      </div>
+      {layout}
     </WeatherStore.Provider>
   );
 };

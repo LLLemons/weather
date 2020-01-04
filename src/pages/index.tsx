@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer, useContext } from 'react';
+import React, { useEffect, useState, useReducer, useContext, useLayoutEffect } from 'react';
 import styles from './index.css';
 import Card from './components/Card';
 import { httpGet } from './utils/RequestUtil/request';
@@ -8,9 +8,17 @@ import { getNowWeather, getForecastWeather } from './services/index';
 import ForecastWeathers from './components/ForecastWeathers';
 import { reducer, init, WeatherStore } from './stores';
 
-export default function() {
+interface Props {
+  location: {
+    query: {
+      index: string;
+    };
+  };
+}
+
+const Index: React.FC<Props> = props => {
+  const initialSlide = +props.location.query.index || 0;
   const { state, dispatch } = useContext(WeatherStore);
-  const [locationList, setLocationList] = useState(['fuzhou', 'beijing', 'shanghai']);
   useEffect(() => {
     new Swiper('.swiper-container', {
       slidesPerView: 'auto',
@@ -18,11 +26,12 @@ export default function() {
       spaceBetween: 30,
       autoHeight: true,
       loop: true,
+      initialSlide,
       pagination: {
         el: '.swiper-pagination',
       },
     });
-  }, []);
+  }, [state]);
   return (
     <div className={styles.wrapper}>
       <div className="swiper-container">
@@ -30,8 +39,8 @@ export default function() {
           {state.cities.map(item => (
             <div className="swiper-slide">
               <div className={styles.swiperItemWrapper}>
-                <Card location={item} />
-                <ForecastWeathers location={item} />
+                <Card baisc={item} />
+                <ForecastWeathers location={item.location} />
               </div>
             </div>
           ))}
@@ -40,4 +49,5 @@ export default function() {
       </div>
     </div>
   );
-}
+};
+export default Index;

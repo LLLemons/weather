@@ -15,6 +15,14 @@ const config: IConfig = {
           path: '/cities',
           component: '../pages/cities',
         },
+        {
+          path: '/neBulaMap',
+          component: '../pages/neBulaMap',
+        },
+        {
+          path: '/detail',
+          component: '../pages/detail',
+        },
       ],
     },
   ],
@@ -36,11 +44,21 @@ const config: IConfig = {
     ],
   ],
   proxy: {
-    '/weather/': {
+    '/weather': {
       target: proxyTarget,
       changeOrigin: true,
       pathRewrite: { '^/weather': '/weather' },
     },
+    '/air': {
+      target: proxyTarget,
+      changeOrigin: true,
+      pathRewrite: { '^/air': '/air' },
+    },
+    '/map': {
+      target: proxyTarget,
+      changeOrigin: true,
+      pathRewrite: { '^/map': '/map' },
+    }
   },
 };
 
