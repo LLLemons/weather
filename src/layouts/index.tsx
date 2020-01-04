@@ -2,14 +2,17 @@ import React, { useReducer } from 'react';
 import styles from './index.css';
 import Header from './components/Header';
 import Content from './components/Content';
-import { reducer, init, WeatherStore } from '@/pages/stores';
+import { reducer, init, WeatherStore, StateProps, ReducerProps } from '@/pages/stores';
 
 const BasicLayout: React.FC = props => {
   const pathname = props.location.pathname;
-  const [state, dispatch] = useReducer(
+  const [state, dispatch] = useReducer<ReducerProps, StateProps>(
     reducer,
     {
       cities: [],
+      heightConfig: false,
+      airQulity: false,
+      map: false,
     },
     init,
   );

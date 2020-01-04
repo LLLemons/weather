@@ -1,8 +1,9 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties, useContext } from 'react';
 import styles from './card.css';
 import { getNowWeather, getForecastWeather } from '../services';
 import router from 'umi/router';
 import { httpGet } from '../utils/RequestUtil/request';
+import { ContextProps, WeatherStore } from '../stores';
 
 interface Props {
   baisc: {
@@ -70,6 +71,7 @@ const Card: React.FC<Props> = ({ baisc }) => {
     WebkitTransform: 'rotateY(180deg)',
     transform: 'rotateY(180deg)',
   });
+  const { state, dispatch } = useContext<ContextProps>(WeatherStore);
   const getNowWeatherData = async () => {
     return await httpGet('/weather/now', {
       location: baisc.location,
@@ -150,18 +152,24 @@ const Card: React.FC<Props> = ({ baisc }) => {
             <div className={styles.wind}>
               {currentData.now.wind_dir}/{currentData.now.wind_sc}级
             </div>
-            <div>空气质量指数 {currentData.airNow.aqi}</div>
-            <div>主要污染物 {currentData.airNow.main}</div>
-            <div>空气质量 {currentData.airNow.qlty}</div>
-            <div>
-              pm10 {currentData.airNow.pm10} pm25 {currentData.airNow.pm25}
-            </div>
-            <div>
-              二氧化氮 {currentData.airNow.no2} 二氧化硫 {currentData.airNow.so2}
-            </div>
-            <div>
-              一氧化碳 {currentData.airNow.co} 臭氧 {currentData.airNow.o3}
-            </div>
+            {state.airQulity ? (
+              <>
+                <div>空气质量指数 {currentData.airNow.aqi}</div>
+                <div>主要污染物 {currentData.airNow.main}</div>
+                <div>空气质量 {currentData.airNow.qlty}</div>
+                <div>
+                  pm10 {currentData.airNow.pm10} pm25 {currentData.airNow.pm25}
+                </div>
+                <div>
+                  二氧化氮 {currentData.airNow.no2} 二氧化硫 {currentData.airNow.so2}
+                </div>
+                <div>
+                  一氧化碳 {currentData.airNow.co} 臭氧 {currentData.airNow.o3}
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
           {/* <div className={styles.add}>+</div> */}
           <div className={styles.add} onClick={handleRotateToBack}>

@@ -40,11 +40,37 @@
   font-size: .3rem;
   width: 100%;
   box-sizing: border-box;
-  padding: .1rem .1rem 0 .2rem;
+  padding: .1rem .2rem 0 .2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .siderIconClose {
   padding-top: .15rem;
   padding-bottom: .15rem;
   padding-left: .15rem;
   padding-right: .15rem;
+}
+.iconSwitch {
+  display: inline-block;
+  height: .3rem;
+  width: .5rem;
+  border-radius: .3rem;
+  background-color: beige;
+  position: relative;
+}
+.iconSwitch::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: .3rem;
+  height: .3rem;
+  border-radius: 50%;
+  background-color: #6AAECC;
+}
+.iconSwitch.show::after {
+  right: 0;
+}
+.iconSwitch.unShow::after {
+  left: 0;
 }

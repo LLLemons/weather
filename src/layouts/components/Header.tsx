@@ -1,12 +1,20 @@
-import React, { useState, CSSProperties } from 'react';
+import React, { useState, CSSProperties, useContext } from 'react';
 import styles from './header.css';
 import router from 'umi/router';
+import { WeatherStore, StateProps, ReducerProps, ContextProps } from '@/pages/stores';
 
 const Header: React.FC = props => {
+  const { state, dispatch } = useContext<ContextProps>(WeatherStore);
   const [menuStyle, setMenuStyle] = useState<CSSProperties>({});
   const handleToCities = () => {
     router.push({
       pathname: '/cities',
+    });
+  };
+  const handleToggle = (type: string) => () => {
+    dispatch({
+      type: 'toggleShow',
+      payload: type,
     });
   };
   return (
@@ -23,7 +31,7 @@ const Header: React.FC = props => {
           });
         }}
       >
-        &#xe600;
+        &#xe611;
       </span>
       <div className={styles.sider} style={menuStyle}>
         <span
@@ -39,20 +47,27 @@ const Header: React.FC = props => {
         <div className={styles.siderItem} onClick={handleToCities}>
           城市列表
         </div>
-        <div
-          className={styles.siderItem}
-          onClick={() => {
-            router.push({
-              pathname: '/neBulaMap',
-            });
-            setMenuStyle({
-              right: '-100%',
-            });
-          }}
-        >
-          星云图
+        <div className={styles.siderItem}>
+          空气质量{' '}
+          <span
+            className={`${styles.iconSwitch} ${state.airQulity ? styles.show : styles.unShow}`}
+            onClick={handleToggle('airQulity')}
+          />
         </div>
-        <div className={styles.siderItem}>太阳高度角</div>
+        <div className={styles.siderItem}>
+          星云图{' '}
+          <span
+            className={`${styles.iconSwitch} ${state.map ? styles.show : styles.unShow}`}
+            onClick={handleToggle('map')}
+          />
+        </div>
+        <div className={styles.siderItem}>
+          太阳高度角{' '}
+          <span
+            className={`${styles.iconSwitch} ${state.heightConfig ? styles.show : styles.unShow}`}
+            onClick={handleToggle('heightConfig')}
+          />
+        </div>
       </div>
     </div>
   );

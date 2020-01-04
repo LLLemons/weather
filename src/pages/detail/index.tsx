@@ -1,10 +1,12 @@
-import React, { useEffect, useState, useLayoutEffect } from 'react';
+import React, { useEffect, useState, useLayoutEffect, useContext } from 'react';
 import { httpGet } from '../utils/RequestUtil/request';
 import * as Highcharts from 'highcharts';
 import * as Exporting from 'highcharts/modules/exporting';
 
 import styles from './styles.less';
 import router from 'umi/router';
+import NeBulaMap from '../neBulaMap';
+import { ContextProps, WeatherStore } from '../stores';
 
 // 初始化导出模块
 Exporting(Highcharts);
@@ -18,6 +20,7 @@ interface Props {
 }
 
 const Detail: React.FC<Props> = props => {
+  const { state, dispatch } = useContext<ContextProps>(WeatherStore);
   const [hourlyData, setHourlyData] = useState([]);
   useEffect(() => {
     httpGet('/weather/hourly', {
@@ -56,7 +59,7 @@ const Detail: React.FC<Props> = props => {
     });
   }, [hourlyData]);
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', overflowY: 'auto' }}>
       <div style={{ width: '100%' }}>
         <div id="container" style={{ width: '100%', height: '400px' }}>
           {''}
@@ -68,6 +71,7 @@ const Detail: React.FC<Props> = props => {
       <span className={`iconfont ${styles.iconBack}`} onClick={() => router.goBack()}>
         &#xe642;
       </span>
+      {state.map && <NeBulaMap />}
     </div>
   );
 };

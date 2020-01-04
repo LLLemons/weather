@@ -5,7 +5,7 @@ import router from 'umi/router';
 
 interface Props {}
 
-const neBulaMap: React.FC<Props> = () => {
+const NeBulaMap: React.FC<Props> = () => {
   const [rotate, setRotate] = useState(0);
   const [Map, setMap] = useState();
   const handleRotateLeft = () => {
@@ -55,4 +55,4 @@ const neBulaMap: React.FC<Props> = () => {
     </div>
   );
 };
-export default neBulaMap;
+export default NeBulaMap;
