@@ -58,6 +58,11 @@ const config: IConfig = {
       target: proxyTarget,
       changeOrigin: true,
       pathRewrite: { '^/map': '/map' },
+    },
+    '/solar': {
+      target: proxyTarget,
+      changeOrigin: true,
+      pathRewrite: { '^/solar': '/solar' },
     }
   },
 };

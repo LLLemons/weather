@@ -15,7 +15,7 @@ interface Props {
   };
 }
 
-function getCurrentTime(type?: 'yyyy-mm-dd' | 'format', yesterday: boolean = false) {
+function getCurrentTime(type?: 'yyyy-mm-dd' | 'yyyyMMdd' | 'format', yesterday: boolean = false) {
   const weeks = ['Sunday', 'Monday', 'TuesDay', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months = [
     'Jan',
@@ -41,6 +41,9 @@ function getCurrentTime(type?: 'yyyy-mm-dd' | 'format', yesterday: boolean = fal
   const week = date.getDay();
   if (type === 'yyyy-mm-dd') {
     return `${year}-${month + 1 < 10 ? `0${month + 1}` : month + 1}-${+day < 10 ? `0${day}` : day}`;
+  }
+  if (type === 'yyyyMMdd') {
+    return `${year}${month + 1 < 10 ? `0${month + 1}` : month + 1}${+day < 10 ? `0${day}` : day}`;
   }
   return `${weeks[week]},${months[month]} ${+day < 10 ? `0${day}` : day},${year}`;
 }
@@ -139,7 +142,12 @@ const Card: React.FC<Props> = ({ baisc }) => {
               router.push({
                 pathname: '/detail',
                 query: {
+                  cid: currentData.basic.cid,
                   location: currentData.basic.location,
+                  lat: currentData.basic.lat,
+                  lon: currentData.basic.lon,
+                  tz: 8,
+                  date: getCurrentTime('yyyyMMdd'),
                 },
               });
             }}
